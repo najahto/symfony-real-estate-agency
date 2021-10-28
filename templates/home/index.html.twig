@@ -5,10 +5,40 @@
 {% block body %}
 
 <div class="jumbotron text-center">
-    <h1>Agency Lorem ipsum dolor sit amet.</h1>
+    <h1>Agency of Lorem ipsum dolor sit amet.</h1>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit vel aliquam cumque eligendi quia dolorem deleniti.
         Soluta eaque dignissimos perferendis!
     </p>
 </div>
+
+<div class="container">
+    <h2>Les derniers biens</h2>
+    <div class="row flex">
+        {% for property in properties  %}
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('property.show', {slug: property.slug, id: property.id } ) }}">{{ property.title }}</a>
+                        </h5>
+                        <p class="card-text">
+                            {{ property.city }} {{ property.postalCode }} 
+                        </p>
+                        <div class="text-primary price">{{ property.formattedPrice }} $</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .price{
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+</style>
 {% endblock %}

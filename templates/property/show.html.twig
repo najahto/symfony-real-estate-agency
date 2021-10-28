@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Property Details{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <div class="container text-center mt-3">
+        <div class="row">
+            <div class="col-md-8">
+                {# <img src="" alt=""> #}
+            </div>
+            <div class="col-md-4">
+                <h1>{{ property.title }}</h1>
+                <h2>{{ property.rooms }} room - {{ property.surface }} m²</h2>
+                <div class="text-primary price">
+                    {{ property.formattedPrice }} $
+                </div>
+                <a href="#" class="btn btn-primary">Contact the agency</a>
+            </div>
+        </div>
+   </div>
+</div>
+
+<div class="container mt-3">
+    
+    <p> {{ property.description | nl2br }}</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Characteristic</h2>
+            <table class="table table-striped">
+                <tr>
+                    <td>Surface</td>
+                    <td>{{ property.surface }} m²</td>
+                </tr>
+                <tr>
+                    <td>Rooms</td>
+                    <td>{{ property.rooms }} m²</td>
+                </tr>
+                <tr>
+                    <td>Bedrooms</td>
+                    <td>{{ property.bedrooms }} m²</td>
+                </tr>
+                <tr>
+                    <td>Floor</td>
+                    <td>{{ property.floor }} m²</td>
+                </tr>
+                <tr>
+                    <td>Heat</td>
+                    <td>{{ property.heatType }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2>specificity</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .price{
+        font-weight: bold;
+        font-size: 3rem;
+    }
+</style>
+{% endblock %}
