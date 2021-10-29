@@ -4,25 +4,20 @@
 
 {% block body %}
 
-<div class="container text-center mt-3">
-    <h1>See all our properties</h1>
- 
-    <div class="row flex">
-        {% for property in properties  %}
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{{ path('property.show', {id: property.id, slug: property.slug } ) }}">{{ property.title }}</a>
-                        </h5>
-                        <p class="card-text">
-                            {{ property.city }} {{ property.postalCode }} 
-                        </p>
-                        <div class="text-primary price">{{ property.formattedPrice }} $</div>
-                    </div>
+    <div class="container text-center mt-3">
+        <h1>See all our properties</h1>
+
+        <div class="row mt-4">
+            {% for property in properties %}
+                <div class="col-md-4">
+                    {% include 'property/_property.html.twig' %}
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
+        {# display navigation #}
+        <div class="navigation d-flex align-items-center justify-content-center">
+            {{ knp_pagination_render(properties) }}
+        </div>
     </div>
-</div>
 {% endblock %}
