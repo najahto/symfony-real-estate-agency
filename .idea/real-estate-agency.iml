@@ -137,6 +137,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/form" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/data-fixtures" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
