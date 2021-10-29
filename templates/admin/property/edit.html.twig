@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Properties {% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h1>Edit Property : {{ property.title }}</h1>
+        {{  include ('admin/property/form.html.twig', {button: 'Edit'}) }}
+    </div>
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Property {% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h1>Create Property</h1>
+        {{  include ('admin/property/form.html.twig', { button: 'Create'}) }}
+    </div>
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}

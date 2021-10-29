@@ -51,7 +51,7 @@ class PropertyController extends AbstractController
             );
         }
 
-        return $this->render('property/show.html.twig', [
+        return $this->render('property/edit.html.twig', [
             'current_menu' => 'properties',
             'property' => $property,
         ]);
