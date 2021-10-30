@@ -3,7 +3,25 @@
 {% block title %}Properties{% endblock %}
 
 {% block body %}
-
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end">
+                <div class="col-md-5">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block">Filter</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
     <div class="container text-center mt-3">
         <h1>See all our properties</h1>
 
