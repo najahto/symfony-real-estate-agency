@@ -7,13 +7,16 @@
         <div class="container">
             {{ form_start(form) }}
             <div class="form-row align-items-end">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     {{ form_row(form.maxPrice) }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     {{ form_row(form.minSurface) }}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
+                    {{ form_row(form.options) }}
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <button class="btn btn-primary btn-block">Filter</button>
                     </div>
