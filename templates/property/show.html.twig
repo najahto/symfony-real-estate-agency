@@ -4,75 +4,117 @@
 
 {% block body %}
 
-<div class="jumbotron">
-    <div class="container text-center mt-3">
-        <div class="row">
-            <div class="col-md-8">
-                {% if property.filename %}
-                    <img src="{{ vich_uploader_asset(property, 'imageFile') |  imagine_filter('medium')  }}" alt="property image" class="card-img-top">
-                {% else %}
-                    <img src="{{ '/images/properties/placeholder.jpg'|  imagine_filter('medium')  }}" alt="property image" class="card-img-top">
-                {% endif %}
-            </div>
-            <div class="col-md-4">
-                <h1>{{ property.title }}</h1>
-                <h2>{{ property.rooms }} room - {{ property.surface }} m²</h2>
-                <div class="text-primary price">
-                    {{ property.formattedPrice }} $
+    <div class="jumbotron">
+        <div class="container mt-3">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
                 </div>
-                <a href="#" class="btn btn-primary">Contact the agency</a>
+            {% endfor %}
+            {% if not form.vars.valid %}
+                <div class="alert alert-danger">
+                    There was a problem with your submission
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-8">
+                    {% if property.filename %}
+                        <img src="{{ vich_uploader_asset(property, 'imageFile') |  imagine_filter('medium') }}"
+                             alt="property image" class="card-img-top">
+                    {% else %}
+                        <img src="{{ '/images/properties/placeholder.jpg'|  imagine_filter('medium') }}"
+                             alt="property image" class="card-img-top">
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h1>{{ property.title }}</h1>
+                    <h2>{{ property.rooms }} room - {{ property.surface }} m²</h2>
+                    <div class="text-primary price">
+                        {{ property.formattedPrice }} $
+                    </div>
+                    <a href="#" class="btn btn-primary"
+                       id="contact-button" {% if form.vars.submitted %} style="display: none;" {% endif %}>Contact the
+                        agency</a>
+                    <div id="contact-form"
+                         class="mt-4" {% if not form.vars.submitted %} style="display: none;" {% endif %}>
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col">{{ form_row(form.firstName) }}</div>
+                            <div class="col">{{ form_row(form.lastName) }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">{{ form_row(form.email) }}</div>
+                            <div class="col">{{ form_row(form.phone) }}</div>
+                        </div>
+                        {{ form_rest(form) }}
+                        <div class="form-group">
+                            <button class="btn btn-primary">Send</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
-        </div>
-   </div>
-</div>
-
-<div class="container mt-3">
-    
-    <p> {{ property.description | nl2br }}</p>
-
-    <div class="row">
-        <div class="col-md-8">
-            <h2>Characteristic</h2>
-            <table class="table table-striped">
-                <tr>
-                    <td>Surface</td>
-                    <td>{{ property.surface }} m²</td>
-                </tr>
-                <tr>
-                    <td>Rooms</td>
-                    <td>{{ property.rooms }}</td>
-                </tr>
-                <tr>
-                    <td>Bedrooms</td>
-                    <td>{{ property.bedrooms }}</td>
-                </tr>
-                <tr>
-                    <td>Floor</td>
-                    <td>{{ property.floor }}</td>
-                </tr>
-                <tr>
-                    <td>Heat</td>
-                    <td>{{ property.heatType }}</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <h2>specificity</h2>
-            <ul class="list-group">
-                {% for option in property.options %}
-                    <li class="list-group-item">{{ option.name }}</li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
-</div>
+
+    <div class="container mt-3">
+
+        <p> {{ property.description | nl2br }}</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Characteristic</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Surface</td>
+                        <td>{{ property.surface }} m²</td>
+                    </tr>
+                    <tr>
+                        <td>Rooms</td>
+                        <td>{{ property.rooms }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bedrooms</td>
+                        <td>{{ property.bedrooms }}</td>
+                    </tr>
+                    <tr>
+                        <td>Floor</td>
+                        <td>{{ property.floor }}</td>
+                    </tr>
+                    <tr>
+                        <td>Heat</td>
+                        <td>{{ property.heatType }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h2>specificity</h2>
+                <ul class="list-group">
+                    {% for option in property.options %}
+                        <li class="list-group-item">{{ option.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-    .price{
-        font-weight: bold;
-        font-size: 3rem;
-    }
-</style>
+    <style>
+        .price {
+            font-weight: bold;
+            font-size: 3rem;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let $contactButton = $('#contact-button');
+        $contactButton.click(e => {
+            e.preventDefault();
+            $('#contact-form').slideDown();
+            $contactButton.slideUp();
+        })
+    </script>
 {% endblock %}
