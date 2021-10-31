@@ -13,21 +13,11 @@
 </div>
 
 <div class="container">
-    <h2>Les derniers biens</h2>
-    <div class="row flex">
+    <h2>Latest properties</h2>
+    <div class="row flex mt-4">
         {% for property in properties  %}
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{{ path('property.show', {slug: property.slug, id: property.id } ) }}">{{ property.title }}</a>
-                        </h5>
-                        <p class="card-text">
-                            {{ property.city }} {{ property.postalCode }} 
-                        </p>
-                        <div class="text-primary price">{{ property.formattedPrice }} $</div>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                {% include 'property/_property.html.twig' %}
             </div>
         {% endfor %}
     </div>
@@ -39,6 +29,11 @@
     .price{
         font-weight: bold;
         font-size: 1.6rem;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
     }
 </style>
 {% endblock %}

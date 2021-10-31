@@ -1,0 +1,27 @@
+<h1>Contact request {{ contact.property.title }}</h1>
+
+<p>
+    A new person want more information about the property
+    <a href="{{ url('property.show',{id: contact.property.id, slug: contact.property.slug}) }}">{{ contact.property.title }}</a>
+</p>
+
+<p>
+<table style="border: medium solid; width: 600px">
+    <tr>
+        <td>Name</td>
+        <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td>{{ contact.phone }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ contact.email }}</td>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td>{{ contact.message | nl2br }}</td>
+    </tr>
+</table>
+</p>
